@@ -47,32 +47,32 @@ export const Benefits = () => {
 
           <div className="font-montserrat">
             <h2 className="text-2xl md:text-3xl font-bold mb-2">
-              Key Benefits of Our System for
+              Principales beneficios de nuestro sistema para
             </h2>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Your Business Efficiency
+              la eficiencia de tu negocio
             </h2>
             <p className="text-sm text-muted-foreground mb-8">
-              Our system boosts productivity, accuracy, and drives business
-              growth.
+              Nuestro sistema aumenta la productividad, la precisión e impulsa
+              el crecimiento empresarial.
             </p>
 
             <div className="space-y-6">
               {[
                 {
-                  title: "Boosting Quality with Tech",
+                  title: "Confianza instantánea",
                   description:
-                    "Advanced manufacturing technology increases product quality, reducing errors and improving consistency.",
+                    "Digitaliza procesos de verificación para generar confianza inmediata entre usuarios, empresas y entidades.",
                 },
                 {
-                  title: "Optimization Production Process",
+                  title: "Reducción de riesgos",
                   description:
-                    "Streamline workflows and reduce time with our innovative solutions, increasing output and reducing costs.",
+                    "Detecta antecedentes negativos y valida información clave para prevenir fraudes y proteger tus operaciones.",
                 },
                 {
-                  title: "AI-Driven Production",
+                  title: "Procesos más ágiles",
                   description:
-                    "Leverage machine learning for smarter manufacturing decisions, enhancing faster and more efficient results.",
+                    "Automatiza la validación de datos para acelerar decisiones, mejorar la eficiencia y reducir tiempos operativos.",
                 },
               ].map((benefit, index) => (
                 <div key={index} className="flex gap-4">

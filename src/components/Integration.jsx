@@ -7,15 +7,16 @@ export const Integration = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Empowering Top Companies with Seamless Integrations
+              Empoderando a las mejores empresas con integraciones perfectas
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Connect your manufacturing processes with your existing tools and
-              systems. Our platform integrates with leading business software
-              and all the tools you need to keep your business growing smoothly.
+              Conecte sus procesos de validación con sus herramientas y sistemas
+              existentes. Nuestra plataforma se integra con el software
+              empresarial líder y con todas las herramientas que necesita para
+              que su negocio crezca sin problemas.
             </p>
             <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white px-6 py-3">
-              Work With Us
+              Trabaja con nosotros
             </button>
           </div>
           <div className="bg-[#e8ffd4] p-8 rounded-lg h-64 flex items-center justify-center">
