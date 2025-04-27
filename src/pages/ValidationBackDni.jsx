@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { isImageBlurred } from "../helpers/isImageBlurred";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const videoConstraints = {
@@ -158,7 +157,7 @@ export const ValidationBackDni = () => {
               className="bg-[#004851] my-5 hover:cursor-pointer text-white font-semibold py-2 px-4 rounded-full flex sm:text-lg text-mg h-full w-full  justify-center disabled:bg-[#004851]/60"
               disabled={isBlurred}
             >
-              <Link to="/home">Siguiente</Link>
+              <Link to="/validation-face">Siguiente</Link>
             </button>
           )}
         </div>

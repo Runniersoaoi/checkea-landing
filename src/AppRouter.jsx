@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 import { ValidationPage } from "./pages/ValidationPage";
 import { ValidationPageDni } from "./pages/ValidationPageDni";
 import { ValidationBackDni } from "./pages/ValidationBackDni";
+import { ValidationFacePage } from "./pages/ValidationFacePage";
 
 function AppRouter() {
   return (
@@ -27,6 +28,7 @@ function AppRouter() {
           path="/validation-back-dni"
           element={<ValidationBackDni />}
         ></Route>
+        <Route path="/validation-face" element={<ValidationFacePage />}></Route>
         <Route
           path="/home"
           element={
