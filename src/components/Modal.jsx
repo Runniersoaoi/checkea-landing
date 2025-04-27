@@ -1,4 +1,5 @@
 import React from "react";
+import { CopyLink } from "./CopyLink";
 
 export const Modal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -25,14 +26,15 @@ export const Modal = ({ isOpen, onClose }) => {
         <h2 className="text-xl font-semibold mb-4">
           Inicie un nuevo proceso de validación
         </h2>
-        <a
-          href="https://example.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline"
-        >
-          Ir al proceso de validación
-        </a>
+        <p className="py-2">
+          Comparta este link con la persona a la cual quiere validar
+        </p>
+        <p className="py-2">
+          👀 Recuerde que este proceso realiza validaciones y necesita la
+          autorizacion de la persona a validar
+        </p>
+
+        <CopyLink />
       </div>
     </div>
   );
