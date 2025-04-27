@@ -11,7 +11,7 @@ export const Header = () => {
             <span className=" font-semibold">CHECKEA</span>
           </Link>
         </div>
-        <nav className="hidden md:flex items-center gap-8 ">
+        {/* <nav className="hidden md:flex items-center gap-8 ">
           <Link to="/home" className="text-sm font-medium">
             Home
           </Link>
@@ -24,14 +24,14 @@ export const Header = () => {
           <Link href="#" className="text-sm font-medium">
             Contacto
           </Link>
-        </nav>
+        </nav> */}
         <div className="flex gap-2">
-          <button className="rounded-full border text-black py-1 px-2 md:text-md text-sm">
+          <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white py-1 px-2  md:text-md text-sm">
             <Link to="/demo-servicio">Vista previa del servicio</Link>
           </button>
-          <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white py-1 px-2  md:text-md text-sm">
+          {/* <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white py-1 px-2  md:text-md text-sm">
             Agenda una demo
-          </button>
+          </button> */}
         </div>
       </div>
     </header>

@@ -2,6 +2,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { isImageBlurred } from "../helpers/isImageBlurred";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { base64ToBlob } from "../helpers/base64toBlob";
+import { startUploadingDniBackFiles } from "../store/validation/thunks";
 
 const videoConstraints = {
   width: 1280,
@@ -16,6 +19,7 @@ export const ValidationBackDni = () => {
   const [devices, setDevices] = useState([]);
   const [isBlurred, setIsBlurred] = useState(false);
 
+  const dispatch = useDispatch();
   const handleDevices = useCallback(
     (mediaDevices) =>
       setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")),
@@ -62,6 +66,7 @@ export const ValidationBackDni = () => {
     // Crear un elemento img a partir del src
     const img = new Image();
     img.src = imageSrc;
+    const blob = base64ToBlob(img.src, "image/png");
 
     // Cuando la imagen se haya cargado, evaluar si está borrosa
     img.onload = () => {
@@ -69,6 +74,11 @@ export const ValidationBackDni = () => {
       setIsBlurred(blurred);
       console.log(isBlurred);
     };
+
+    if (!isBlurred && imageSrc) {
+      console.log("se va ejecutar esto");
+      dispatch(startUploadingDniBackFiles(blob));
+    }
   };
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-white w-full p-20 md:p-0 font-montserrat">

@@ -3,6 +3,9 @@ import Webcam from "react-webcam";
 import { isImageBlurred } from "../helpers/isImageBlurred";
 import { Link } from "react-router-dom";
 import * as faceapi from "face-api.js"; // <<< Agregamos face-api.js
+import { useDispatch } from "react-redux";
+import { base64ToBlob } from "../helpers/base64toBlob";
+import { startUploadingFaceFiles } from "../store/validation/thunks";
 
 const videoConstraints = {
   width: 1280,
@@ -15,11 +18,11 @@ export const ValidationFacePage = () => {
   const [facingMode, setFacingMode] = useState("user");
   const [deviceId, setDeviceId] = useState(null);
   const [devices, setDevices] = useState([]);
-  const [isBlurred, setIsBlurred] = useState(false);
 
-  const [faceCentered, setFaceCentered] = useState(false); // <<< NUEVO estado
-  const [faceDetected, setFaceDetected] = useState(false); // <<< NUEVO estado
+  const [faceCentered, setFaceCentered] = useState(false);
+  const [faceDetected, setFaceDetected] = useState(false);
 
+  const dispatch = useDispatch();
   const handleDevices = useCallback(
     (mediaDevices) =>
       setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")),
@@ -32,7 +35,7 @@ export const ValidationFacePage = () => {
 
   useEffect(() => {
     const loadModels = async () => {
-      const MODEL_URL = "/models"; // Asegúrate de que esté bien la ruta a tu carpeta de modelos
+      const MODEL_URL = "/models";
       await Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
         faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
@@ -76,12 +79,16 @@ export const ValidationFacePage = () => {
 
     const img = new Image();
     img.src = imageSrc;
+    const blob = base64ToBlob(img.src, "image/png");
 
     img.onload = () => {
       const blurred = isImageBlurred(img);
-      setIsBlurred(blurred);
-      console.log(isBlurred);
     };
+
+    if (imageSrc) {
+      console.log("se va ejecutar esto");
+      dispatch(startUploadingFaceFiles(blob));
+    }
   };
 
   const detectFaceCentered = async () => {
@@ -105,7 +112,7 @@ export const ValidationFacePage = () => {
         const canvasCenterX = videoWidth / 2;
         const canvasCenterY = videoHeight / 2;
 
-        const thresholdX = videoWidth * 0.2; // 20% tolerancia
+        const thresholdX = videoWidth * 0.2;
         const thresholdY = videoHeight * 0.2;
 
         const centeredX = Math.abs(faceCenterX - canvasCenterX) < thresholdX;
@@ -122,7 +129,7 @@ export const ValidationFacePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       detectFaceCentered();
-    }, 500); // cada 500ms revisa
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -167,19 +174,13 @@ export const ValidationFacePage = () => {
           </div>
         )}
 
-        {isBlurred && (
-          <div className="text-red-500 mt-4 font-montserrat text-center">
-            La imagen está borrosa, por favor intenta de nuevo.
-          </div>
-        )}
-
         <div className="flex gap-2 py-5 items-center justify-center flex-col">
           <button
             className="bg-[#004851] hover:cursor-pointer text-white font-semibold py-2 px-2 rounded-full sm:text-lg text-md h-full w-full disabled:bg-[#004851]/60"
             onClick={() => {
               setFacingMode(facingMode === "user" ? "environment" : "user");
             }}
-            disabled={imageSrc && !isBlurred}
+            disabled={imageSrc}
           >
             Rotar cámara
           </button>
@@ -187,12 +188,12 @@ export const ValidationFacePage = () => {
           <button
             className="bg-[#004851] hover:cursor-pointer text-white font-semibold py-2 px-4 rounded-full flex sm:text-lg text-md h-full w-full justify-center disabled:bg-[#004851]/60"
             onClick={handleCapture}
-            disabled={!faceCentered || (imageSrc && !isBlurred)} // <<< Bloquea si no está centrada
+            disabled={!faceCentered || imageSrc}
           >
             Tomar fotografía
           </button>
 
-          {imageSrc && !isBlurred && (
+          {imageSrc && (
             <>
               <p className="text-[#004851] font-semibold mt-5">
                 ¡Captura realizada con éxito!
@@ -200,17 +201,14 @@ export const ValidationFacePage = () => {
               <img
                 src={imageSrc}
                 alt="captured"
-                className="mt-2 h-56 w-56 rounded-full"
+                className="mt-2 h-56 w-56 rounded-full object-cover"
               />
             </>
           )}
 
-          {imageSrc && !isBlurred && (
-            <button
-              className="bg-[#004851] my-5 hover:cursor-pointer text-white font-semibold py-2 px-4 rounded-full flex sm:text-lg text-md h-full w-full justify-center disabled:bg-[#004851]/60"
-              disabled={isBlurred}
-            >
-              <Link to="/home">Siguiente</Link>
+          {imageSrc && (
+            <button className="bg-[#004851] my-5 hover:cursor-pointer text-white font-semibold py-2 px-4 rounded-full flex sm:text-lg text-md h-full w-full justify-center disabled:bg-[#004851]/60">
+              <Link to="/validation-wait">Siguiente</Link>
             </button>
           )}
         </div>

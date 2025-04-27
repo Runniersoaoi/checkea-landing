@@ -6,6 +6,7 @@ import { ValidationPage } from "./pages/ValidationPage";
 import { ValidationPageDni } from "./pages/ValidationPageDni";
 import { ValidationBackDni } from "./pages/ValidationBackDni";
 import { ValidationFacePage } from "./pages/ValidationFacePage";
+import { UploadWaitPage } from "./pages/UploadWaitPage";
 
 function AppRouter() {
   return (
@@ -29,6 +30,7 @@ function AppRouter() {
           element={<ValidationBackDni />}
         ></Route>
         <Route path="/validation-face" element={<ValidationFacePage />}></Route>
+        <Route path="/validation-wait" element={<UploadWaitPage />}></Route>
         <Route
           path="/home"
           element={

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "../hooks/useForm";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setDni, setEmail } from "../store/validation/validationSlice";
 
 const formData = {
   email: "",
@@ -23,6 +25,7 @@ const formValidations = {
 };
 
 export const ValidationPage = () => {
+  const dispatch = useDispatch();
   const { email, dni, onInputChange, dniValid, emailValid } = useForm(
     formData,
     formValidations
@@ -33,6 +36,8 @@ export const ValidationPage = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setFormSubmitted(true);
+    dispatch(setDni(dni));
+    dispatch(setEmail(email));
     navigate("/validation-front-dni");
   };
   return (

@@ -46,7 +46,7 @@ export const isImageBlurred = (image) => {
   }
 
   // Comparar varianza con un umbral (el umbral puede ajustarse dependiendo de tus necesidades)
-  const threshold = 28000000; // Este valor puede necesitar ajuste
+  const threshold = 10000000; // Este valor puede necesitar ajuste
   console.log(laplacianVariance);
   return laplacianVariance < threshold;
 };

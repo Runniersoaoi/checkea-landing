@@ -2,6 +2,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { isImageBlurred } from "../helpers/isImageBlurred";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { startUploadingDniFrontFiles } from "../store/validation/thunks";
+import { base64ToBlob } from "../helpers/base64toBlob";
 
 const videoConstraints = {
   width: 1280,
@@ -14,8 +17,9 @@ export const ValidationPageDni = () => {
   const [facingMode, setFacingMode] = useState("user");
   const [deviceId, setDeviceId] = useState(null);
   const [devices, setDevices] = useState([]);
-  const [isBlurred, setIsBlurred] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(null);
 
+  const dispatch = useDispatch();
   const handleDevices = useCallback(
     (mediaDevices) =>
       setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")),
@@ -57,18 +61,22 @@ export const ValidationPageDni = () => {
   const handleCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImageSrc(imageSrc);
-    console.log(imageSrc);
 
     // Crear un elemento img a partir del src
     const img = new Image();
     img.src = imageSrc;
+    const blob = base64ToBlob(img.src, "image/png");
 
     // Cuando la imagen se haya cargado, evaluar si está borrosa
     img.onload = () => {
       const blurred = isImageBlurred(img);
       setIsBlurred(blurred);
-      console.log(isBlurred);
+      console.log("Blurred" + isBlurred);
     };
+
+    if (!isBlurred && imageSrc) {
+      dispatch(startUploadingDniFrontFiles(blob));
+    }
   };
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-white w-full p-20 md:p-0 font-montserrat">
