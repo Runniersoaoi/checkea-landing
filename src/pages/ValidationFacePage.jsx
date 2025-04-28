@@ -75,7 +75,6 @@ export const ValidationFacePage = () => {
   const handleCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImageSrc(imageSrc);
-    console.log(imageSrc);
 
     const img = new Image();
     img.src = imageSrc;
@@ -86,7 +85,6 @@ export const ValidationFacePage = () => {
     };
 
     if (imageSrc) {
-      console.log("se va ejecutar esto");
       dispatch(startUploadingFaceFiles(blob));
     }
   };
@@ -142,7 +140,8 @@ export const ValidationFacePage = () => {
         </h4>
         <p className="text-center">
           Cuando enfoques tu cara correctamente presiona el botón "Tomar
-          fotografía". 👀 Asegúrate de enfocar bien la cámara.
+          fotografía". 👀 Asegúrate de enfocar bien la cámara. Quitate objetos
+          como lentes, aretes o mascarillas.
         </p>
       </div>
 

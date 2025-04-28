@@ -4,9 +4,7 @@ export const isImageBlurred = (image) => {
 
   // Dibujar la imagen en el canvas
   canvas.width = image.width;
-  console.log(canvas.width);
   canvas.height = image.height;
-  console.log(canvas.height);
   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
   // Obtener los datos de los píxeles de la imagen
@@ -47,6 +45,5 @@ export const isImageBlurred = (image) => {
 
   // Comparar varianza con un umbral (el umbral puede ajustarse dependiendo de tus necesidades)
   const threshold = 10000000; // Este valor puede necesitar ajuste
-  console.log(laplacianVariance);
   return laplacianVariance < threshold;
 };

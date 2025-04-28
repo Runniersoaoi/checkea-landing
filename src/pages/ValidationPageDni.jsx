@@ -71,7 +71,6 @@ export const ValidationPageDni = () => {
     img.onload = () => {
       const blurred = isImageBlurred(img);
       setIsBlurred(blurred);
-      console.log("Blurred" + isBlurred);
     };
 
     if (!isBlurred && imageSrc) {
