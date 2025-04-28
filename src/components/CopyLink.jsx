@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const CopyLink = () => {
   const [copied, setCopied] = useState(false);
-  const link = "https://w112s4tq-5173.brs.devtunnels.ms/validation";
+  const link = "https://checkea.netlify.app/validation";
 
   const handleCopy = async () => {
     try {
