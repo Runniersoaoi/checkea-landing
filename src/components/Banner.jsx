@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Banner = () => {
   return (
@@ -13,11 +14,11 @@ export const Banner = () => {
           identidad más exhaustivo de Perú.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center font-inter text-lg">
-          <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white px-8 py-2">
-            Empieza
+          <button className="rounded-full bg-[#004851] hover:bg-[#003840] hover:cursor-pointer text-white px-8 py-2">
+            <Link to="/demo-servicio">Empieza</Link>
           </button>
-          <button variant="outline" className="rounded-full px-8 py-2 border">
-            Demo
+          <button variant="outline" className="rounded-full px-8 py-2 border hover:cursor-pointer">
+            <Link to="/demo-servicio">Demo</Link>
           </button>
         </div>
       </div>

@@ -16,8 +16,7 @@ export const Footer = () => {
               <span className=" font-semibold">CHECKEA</span>
             </div>
             <p className="text-sm opacity-80">
-              Our solutions make production faster and smarter. Contact us for
-              more information.
+              Con nuestro background check obtienes el reporte de validación de identidad más exhaustivo de Perú.
             </p>
           </div>
 
@@ -87,11 +86,11 @@ export const Footer = () => {
 
         <div className="border-t border-[#005c66] pt-6 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm opacity-80 mb-4 md:mb-0">
-            © 2025 Checkea. All rights reserved.
+            © 2025 Checkea. Todos los derechos reservados.
           </div>
           <div className="flex gap-4">
             <Link href="#" className="text-sm">
-              Terms & Conditions
+              Terminos & Condiciones
             </Link>
             <Link href="#" className="text-sm">
               Privacy Policy

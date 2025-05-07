@@ -77,7 +77,7 @@ export const Pricing = () => {
               variant="outline"
               className="w-full mb-6 border-white text-white hover:bg-white hover:text-[#003840] border rounded-md py-2"
             >
-              Get Started
+              Contactanos
             </button>
             <div className="space-y-3">
               <div className="flex items-center gap-2">

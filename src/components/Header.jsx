@@ -26,7 +26,7 @@ export const Header = () => {
           </Link>
         </nav> */}
         <div className="flex gap-2">
-          <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white py-1 px-2  md:text-md text-sm">
+          <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white py-2 px-3  md:text-md text-sm">
             <Link to="/demo-servicio">Vista previa del servicio</Link>
           </button>
           {/* <button className="rounded-full bg-[#004851] hover:bg-[#003840] text-white py-1 px-2  md:text-md text-sm">
